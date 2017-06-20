@@ -3,8 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Omega Message Board</title>
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/messageBoard.js" charset="utf-8"></script>
+    <script src="scripts/services/messageBoardService.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-app='myApp'>
     <h1>Omega Message Board</h1>
+    <div ng-controller='MessageBoardController as mbc' ng-init='mbc.getMessages()'>
+      messages will go here...
+    </div>
   </body>
 </html>
