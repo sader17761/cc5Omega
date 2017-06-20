@@ -11,16 +11,34 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
     });
   }; //end getMessages
 
+  vm.logOut = function(){
+    console.log( 'logging out', vm.name );
+    vm.hasName = false;
+    vm.name = '';
+  };
+
   vm.sendMessage = function(){
-    // create object to send
-    var newMessage = {
-      name: vm.name,
-      body: vm.body
-    }; // end newMessage
-    console.log( 'in controller sending:', newMessage );
-    MessageBoardService.newMessage( newMessage ).then( function(){
-      console.log( 'back in controller after post' );
-    });
+    // used to toggle name input
+    if( !vm.hasName ){
+      vm.hasName = true;
+    }
+
+    if( vm.body == '' ){
+      alert( 'do NOT spam us with your empty messages!!!' );
+    } // end empty message
+    else{
+      // create object to send
+      var newMessage = {
+        name: vm.name,
+        body: vm.body
+      }; // end newMessage
+      console.log( 'in controller sending:', newMessage );
+      MessageBoardService.newMessage( newMessage ).then( function(){
+        console.log( 'back in controller after post' );
+        vm.getMessages();
+        vm.body = '';
+      });
+    } // end message exxists
   };
 
 });
