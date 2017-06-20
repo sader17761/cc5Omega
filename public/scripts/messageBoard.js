@@ -5,6 +5,9 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
 
   vm.getMessages = function(){
     console.log( 'in controller, getMessages');
-    MessageBoardService.retrieveMessages();
+    MessageBoardService.retrieveMessages().then( function(){
+      vm.messages = MessageBoardService.data;
+      console.log( 'back in controller with:', vm.messages );
+    });
   }; //end getMessages
 });
