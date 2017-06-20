@@ -10,7 +10,11 @@
   <body ng-app='myApp'>
     <h1>Omega Message Board</h1>
     <div ng-controller='MessageBoardController as mbc' ng-init='mbc.getMessages()'>
-      messages will go here...
+      <div>
+        <input type="text" ng-model='mbc.name' placeholder="name">
+        <input type="text" ng-model='mbc.body' placeholder="message">
+        <button ng-click='mbc.sendMessage()'>Send</button>
+      </div>
     </div>
   </body>
 </html>

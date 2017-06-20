@@ -11,4 +11,15 @@ myApp.service( 'MessageBoardService', function( $http ){
       sv.data = response.data;
     }); // end http
   }; //end retrieveMessages
+
+  sv.newMessage = function( messageObject ){
+    console.log( 'in service sending:', messageObject );
+    return $http({
+      method: 'POST',
+      url: '/messages',
+      data: messageObject
+    }).then( function( response ){
+      console.log( 'back from post with:', response );
+    }); // end http
+  }; // end newMessage
 }); //end service
