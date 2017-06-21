@@ -12,6 +12,32 @@ myApp.service( 'MessageBoardService', function( $http ){
     }); // end http
   }; //end retrieveMessages
 
+  sv.sendLogIn = function(){
+    console.log('in service sendLogIn');
+    var credentials = {
+      username: 'boris',
+      password: 'karkoff'
+    };
+    return $http({
+      method: 'POST',
+      url: '/',
+      data: credentials
+    }).then(function(response){
+      console.log('back from login attempt:', response);
+    }); //end http
+  };
+
+  sv.sendRegister = function(credentials){
+    console.log('in service sendRegister');
+    return $http({
+      method: 'POST',
+      url: '/register',
+      data: credentials
+    }).then(function(response){
+      console.log('back from login attempt:', response);
+    }); //end http
+  };
+
   sv.newMessage = function( messageObject ){
     console.log( 'in service sending:', messageObject );
     return $http({

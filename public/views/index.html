@@ -7,12 +7,19 @@
     <script src="scripts/messageBoard.js" charset="utf-8"></script>
     <script src="scripts/services/messageBoardService.js" charset="utf-8"></script>
   </head>
-  <body ng-app='myApp'>
+  <body ng-app="myApp">
     <h1>Omega Message Board</h1>
-    <div ng-controller='MessageBoardController as mbc' ng-init='mbc.getMessages()'>
+    <div ng-controller="MessageBoardController as mbc" ng-init="mbc.getMessages()">
+      <button ng-click="mbc.logIn()">Log In</button>
       <div>
-        <p ng-show='mbc.hasName'>
-          Logged in as: {{ mbc.name }} <button ng-click='mbc.logOut()'>Log Out</button>
+        <input type="text" placeholder="username" ng-model="mbc.usernameRegister">
+        <input type="password" placeholder="password" ng-model="mbc.passwordRegister">
+        <button ng-click="mbc.register()">Register</button>
+      </div>
+
+      <div>
+        <p ng-show="mbc.hasName">
+          Logged in as: {{ mbc.name }} <button ng-click="mbc.logOut()">Log Out</button>
         </p>
         <input type="text" ng-model='mbc.name' placeholder="name" ng-hide='mbc.hasName'>
         <input type="text" ng-model='mbc.body' placeholder="message">
@@ -20,7 +27,7 @@
       </div>
       <div>
         <p ng-repeat='message in mbc.messages'>
-          {{ message.name }}: {{ message.body }}
+          {{ message.name }} {{ message.body }}
         </p>
       </div>
     </div>

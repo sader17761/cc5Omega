@@ -11,6 +11,24 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
     });
   }; //end getMessages
 
+  vm.logIn = function(){
+    console.log('In logIn controller');
+    MessageBoardService.sendLogIn();
+  };
+
+  vm.register = function(){
+    console.log('In register controller');
+    var credentials = {
+      username: vm.usernameRegister,
+      password: vm.passwordRegister
+    };
+    MessageBoardService.sendRegister(credentials).then(function(){
+      // clear out inputs when returned from register call
+      vm.usernameRegister = '';
+      vm.passwordRegister = '';
+    });
+  };
+
   vm.logOut = function(){
     console.log( 'logging out', vm.name );
     vm.hasName = false;
@@ -23,7 +41,7 @@ myApp.controller( 'MessageBoardController', function( MessageBoardService ){
       vm.hasName = true;
     }
 
-    if( vm.body == '' ){
+    if( vm.body === '' ){
       alert( 'do NOT spam us with your empty messages!!!' );
     } // end empty message
     else{
